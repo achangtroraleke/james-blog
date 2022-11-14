@@ -126,6 +126,7 @@ def show_post(post_id):
     requested_post = BlogPost.query.get(post_id)
     if form.validate_on_submit():
         if not current_user.is_authenticated:
+            flash("You must be logged in to leave a comment.")
             return redirect(url_for("login"))
 
         new_comment = Comment(text=form.comment.data,
